@@ -1,0 +1,105 @@
+/* ===== Paleta "Tonos tierra cálidos" (ver informe) ===== */
+:root {
+  --fondo: #F5F0E8; --superficie: #EDE6D6; --acento: #A8BBA0; --acento2: #D4A574;
+  --texto: #3D3832; --texto2: #6A6058; --borde: #cdbfa6; --foco: #3D3832;
+  --fs: 1rem; --interlineado: 1.6; --fuente: "Atkinson Hyperlegible", Verdana, "Segoe UI", sans-serif;
+}
+html[data-contraste="true"] { --fondo: #000; --superficie: #111; --acento: #FFE600; --acento2: #FFE600; --texto: #FFE600; --texto2: #FFF; --borde: #FFE600; --foco: #fff; }
+html[data-espaciado="true"] { --interlineado: 2.1; letter-spacing: .06em; word-spacing: .16em; }
+html[data-legible="true"] { --fuente: "OpenDyslexic", "Comic Sans MS", "Trebuchet MS", sans-serif; }
+
+* { box-sizing: border-box; }
+html { font-size: 100%; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: var(--fs)/var(--interlineado) var(--fuente); }
+h1, h2 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; }
+a { color: inherit; text-underline-offset: .2em; }
+:focus-visible { outline: 4px solid var(--foco); outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.saltar { position: absolute; left: -999px; background: var(--acento); padding: .5rem 1rem; z-index: 99; }
+.saltar:focus { left: .5rem; top: .5rem; }
+main { max-width: 1200px; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
+
+.cabecera { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; align-items: center; padding: .75rem 1.25rem; background: var(--superficie); border-bottom: 2px solid var(--borde); }
+.marca { font: 700 1.3rem Georgia, serif; text-decoration: none; }
+.cabecera nav { display: flex; gap: 1rem; }
+.barra-acc { margin-left: auto; display: flex; flex-wrap: wrap; gap: .35rem; }
+.barra-acc button, .boton { font: inherit; color: var(--texto); background: var(--acento); border: 2px solid var(--borde); border-radius: 10px; padding: .5rem .9rem; cursor: pointer; min-height: 44px; }
+.barra-acc button { background: var(--fondo); font-size: .85rem; }
+.barra-acc button[aria-pressed="true"] { background: var(--acento); font-weight: 700; }
+.boton:hover { background: var(--acento2); }
+html[data-contraste="true"] .boton { background: #000; }
+
+.aviso { background: var(--superficie); border-left: 6px solid var(--acento2); padding: .75rem 1rem; border-radius: 6px; }
+.aviso-error { border-left-color: #8a3b2a; }
+.meta, .historial { color: var(--texto2); }
+
+/* Buscador y formularios */
+.buscador, .formulario { background: var(--superficie); padding: 1rem; border-radius: 14px; margin-bottom: 1rem; }
+.fila { display: flex; flex-wrap: wrap; gap: .75rem; align-items: end; margin-bottom: .5rem; }
+.fila > label:first-child { flex-basis: 100%; font-weight: 700; }
+input, select, textarea { font: inherit; color: var(--texto); background: var(--fondo); border: 2px solid var(--borde); border-radius: 8px; padding: .5rem .7rem; max-width: 100%; }
+.buscador input[type=search] { flex: 1 1 260px; }
+.formulario label { display: block; margin-top: .8rem; font-weight: 700; }
+.formulario input:not([type=checkbox]):not([type=radio]), .formulario textarea, .formulario select { width: 100%; }
+.formulario textarea { min-height: 220px; }
+
+.tarjetas { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+.tarjeta { background: var(--superficie); border: 2px solid var(--borde); border-radius: 14px; overflow: hidden; }
+.tarjeta a { display: block; text-decoration: none; height: 100%; }
+.tarjeta:focus-within, .tarjeta:hover { border-color: var(--texto); }
+.tarjeta img, .sin-portada { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: grid; place-items: center; font-size: 3rem; background: var(--acento); }
+.tarjeta h2 { font-size: 1.2rem; margin: .6rem .9rem 0; }
+.tarjeta p { margin: .2rem .9rem .9rem; color: var(--texto2); font-size: .9rem; }
+
+/* ===== Reproductor: la IMAGEN manda, el texto va debajo y más pequeño ===== */
+.escenario { position: relative; background: #1d1a17; border-radius: 16px; overflow: hidden; margin: .5rem 0 1rem; display: grid; place-items: center; height: min(72vh, 62vw); min-height: 260px; }
+.escenario img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.subtitulos { display: none; }
+.mini-control { display: none; }
+
+.controles { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; background: var(--superficie); padding: .75rem; border-radius: 12px; }
+.controles .progreso { flex: 1 1 220px; display: flex; gap: .5rem; align-items: center; }
+.controles .progreso input { flex: 1; padding: 0; }
+.texto { font-size: .95rem; max-width: 75ch; max-height: 220px; overflow-y: auto; margin-top: 1rem; padding: .5rem 1rem; background: var(--superficie); border-radius: 12px; }
+.fragmento { padding: .3rem .6rem; border-radius: 8px; margin: .3rem 0; }
+.fragmento.activo { background: var(--acento); font-weight: 700; }
+html[data-contraste="true"] .fragmento.activo { background: #FFE600; color: #000; }
+.preguntas { margin-top: 2rem; max-width: 75ch; }
+.pregunta { background: var(--superficie); padding: .5rem 1rem; border-radius: 10px; margin: .5rem 0; display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
+
+/* ===== Modo cine: pantalla completa solo con imagen + subtítulos ===== */
+.escenario:fullscreen, .escenario.pseudo-fs { background: #000; border-radius: 0; margin: 0; width: 100vw; height: 100vh; }
+.escenario.pseudo-fs { position: fixed; inset: 0; z-index: 1000; }
+.escenario.cine .subtitulos { display: block; position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); width: min(90%, 1000px);
+  text-align: center; color: #fff; background: rgba(0,0,0,.72); padding: .5em .9em; border-radius: 8px; font-size: clamp(1.1rem, 2.4vw, 2rem); line-height: 1.35; text-shadow: 0 2px 4px #000; }
+.escenario.cine .subtitulos:empty { display: none; }
+.escenario.cine .mini-control { display: flex; gap: .5rem; position: absolute; top: 1rem; right: 1rem; padding: .4rem; background: rgba(0,0,0,.65); border-radius: 12px; transition: opacity .3s; }
+.escenario.cine.ocultar-mini .mini-control { opacity: 0; pointer-events: none; }
+.escenario.cine.ocultar-mini { cursor: none; }
+.mini-control .boton { color: #000; background: #fff; }
+.mini-control .boton[aria-pressed="false"] { background: #bbb; text-decoration: line-through; }
+
+/* ===== Administración ===== */
+.tabla { width: 100%; border-collapse: collapse; background: var(--superficie); }
+.tabla th, .tabla td { border: 1px solid var(--borde); padding: .5rem; text-align: left; vertical-align: top; }
+.tabla input[type=number] { width: 5.5rem; }
+.tabla img { width: 160px; border-radius: 8px; }
+.miniatura-sync { position: sticky; top: 0; background: var(--fondo); padding: .5rem 0; z-index: 5; }
+.pie { text-align: center; color: var(--texto2); padding: 2rem 1rem; }
+@media (max-width: 640px) { .escenario { height: 56vw; } .barra-acc { margin-left: 0; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* Editor de sincronización */
+.panel-sync { position: sticky; top: 0; z-index: 10; background: var(--fondo); border-bottom: 2px solid var(--borde); padding: .5rem 0; }
+.panel-sync .fila { align-items: center; }
+.modo { border: 0; padding: 0; margin: 0; display: flex; gap: 1rem; }
+.tabla input.t { width: 5.5rem; text-align: center; }
+.tabla .boton { min-height: 36px; padding: .25rem .6rem; margin: .15rem 0; font-size: .85rem; }
+.fila-sync.siguiente { outline: 4px solid var(--foco); outline-offset: -4px; }
+.fila-sync.sonando td { background: var(--acento); }
+
+/* Ojito de contraseña */
+.campo-clave { position: relative; }
+.campo-clave input { padding-right: 3.2rem; }
+.ojito { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); min-width: 44px; min-height: 44px; border: 0; background: transparent; font-size: 1.3rem; cursor: pointer; color: var(--texto); border-radius: 8px; }
+.formulario .campo-clave { margin-top: 0; }
